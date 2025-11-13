@@ -1,7 +1,9 @@
 // TODO: sampleUser, samplePosts 타입 명시적으로 정의하세요
 // src/types.ts 파일에 타입 정의하고 import 해서 사용하세요
 
-const sampleUser = {
+import {User, Post} from "./types";
+
+const sampleUser: User = {
   id: 1,
   name: "John Doe",
   age: 30,
@@ -9,7 +11,7 @@ const sampleUser = {
   isAdmin: true,
 };
 
-const samplePosts = [
+const samplePosts: Post[] = [
   {
     id: 1,
     title: "Hello World",
