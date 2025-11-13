@@ -1,4 +1,5 @@
 import { User, Post } from "./types";
+import {printPostStatus} from "./postUtils";
 
 const sampleUser: User = {
   id: 1,
@@ -69,3 +70,6 @@ const updatedSamplePosts: Post[] = [
 ];
 
 // TODO-3: printPostStatus 함수를 import 해서 updatedSamplePosts의 각 포스트의 상태를 출력하세요
+for (const post of updatedSamplePosts) {
+  printPostStatus(post);
+}

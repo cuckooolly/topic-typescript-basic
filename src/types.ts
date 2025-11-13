@@ -15,11 +15,31 @@ export type User = {
 // type ArchivedPost = { status: 'archived', archivedDate: Date, ...기존 Post 속성(id 제외) };
 // type Post = { id: number } & (DraftPost | PublishedPost | ArchivedPost);
 
-export type Post = {
-  id: number;
+
+type DraftPost = {
   title: string;
   content: string;
   authorId: number;
   tags: string[];
-  status: "draft" | "published" | "archived";
+  status: "draft";
 };
+
+type PublishedPost = {
+  title: string;
+  content: string;
+  authorId: number;
+  tags: string[];
+  status: "published";
+  publishedDate: Date;
+};
+
+type ArchivedPost = {
+  title: string;
+  content: string;
+  authorId: number;
+  tags: string[];
+  status: "archived";
+  archivedDate: Date;
+};
+
+export type Post = { id: number } & (DraftPost | PublishedPost | ArchivedPost);
