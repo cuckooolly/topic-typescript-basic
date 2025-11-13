@@ -59,15 +59,14 @@ export interface Author extends User {
 // TODO-2: 아래 인터페이스를 비동기 메서드로 수정하세요.
 // 메서드들의 리턴타입을 Promise<ApiResponse<T>> 형태로 수정하세요
 
-export interface IBlogService {
-  getAllPosts: () => Post[];
-  getPostById: (id: number) => Post | undefined;
-  addPost: (postData: Omit<DraftPost, "status">) => Post;
+export interface IBlogService{
+  getPostById: (id: number) => Promise<ApiResponse<Post | undefined>>;
+  addPost: (postData: Omit<DraftPost, "status">) => Promise<ApiResponse<Post>>;
   updatePost: (
     id: number,
     updateData: Partial<Omit<Post, "id" | "status">>,
-  ) => Post | undefined;
-  deletePost: (id: number) => boolean;
+  ) => Promise<ApiResponse<Post | undefined>>;
+  deletePost: (id: number) => Promise<ApiResponse<boolean>>;
 }
 
 // TODO-1:src/types.ts에 제네릭 인터페이스 ApiResponse<T>
@@ -77,4 +76,8 @@ export interface IBlogService {
 //   error?: string
 //   비동기 API 호출 결과를 객체형태의 표준 응답 형태로 사용하기 위해 정의
 
-export interface ApiResponse<T> {}
+export interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  error?: string;
+}

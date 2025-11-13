@@ -64,7 +64,8 @@ const blogService = new BlogService();
 async function testBlogService() {
   try {
     // 모든 포스트 가져와서 콘솔로그 찍으세요. 로그 예시: "모든 포스트 조회 결과: {success: true, data: [...]}"
-    // const allPostsResponse =
+    const allPostsResponse = await blogService.getAllPosts();
+    console.log("모든 포스트 조회 결과:", allPostsResponse);
 
     // 새 포스트 추가히고 콘솔로그 찍으세요. 로그 예시: "새 포스트 추가 결과: {success: true, data: {...}}"
     const newPost = {
@@ -73,7 +74,13 @@ async function testBlogService() {
       authorId: 1,
       tags: ["test", "blog"],
     };
-    // const addPostResponse =
+    const addPostResponse = await blogService.addPost(newPost);
+    console.log("새 포스트 추가 결과:", addPostResponse);
+
+    // 추가한 포스트 ID로 해당 포스트 가져와서 콘솔로그 찍으세요. 로그 예시: "ID로 포스트 조회 결과: {success: true, data: {...}}"
+    const allPosts = await blogService.getAllPosts();
+    console.log("모든 포스트 조회 결과:", allPosts);
+
   } catch (error) {
     console.error("에러 발생:", error);
   }
