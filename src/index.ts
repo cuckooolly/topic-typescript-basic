@@ -47,7 +47,9 @@ const updatedSamplePosts: Post[] = [
   },
 ];
 
-updatedSamplePosts.forEach(printPostStatus);
-
 // TODO-3: 발행된 포스트의 제목만 출력하는 코드를 작성하세요.
-// updatedSamplePosts.forEach();
+updatedSamplePosts.forEach(printPostStatus => {
+    if (printPostStatus.status === "published") {
+        console.log("Published Post Title:", printPostStatus.title);
+    }
+});

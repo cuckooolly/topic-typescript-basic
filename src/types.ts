@@ -38,8 +38,8 @@ export type Post = { id: number } & (DraftPost | PublishedPost | ArchivedPost);
 // UpdatePostFunc (글 수정. 성공시 Post 반환, 실패 시 undefined 반환)
 // DeletePostFunc (글 삭제. 성공 여부 반환)
 
-// export type GetPostsFunc =
-// export type GetPostByIdFunc =
-// export type AddPostFunc =
-// export type UpdatePostFunc =
-// export type DeletePostFunc =
+export type AddPostFunc = (postData: Omit<DraftPost, "id" | "status" | "createdAt" | "updatedAt">) => Post;
+export type UpdatePostFunc = (postId: number, updateData: Partial<Omit<Post, "id" | "status" | "createdAt">>) => Post | undefined;
+export type DeletePostFunc = (postId: number) => boolean;
+export type PublishPostFunc = (postId: number) => Post | undefined;
+export type ArchivePostFunc = (postId: number) => Post | undefined;
